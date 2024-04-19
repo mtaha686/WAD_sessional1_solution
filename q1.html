@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Applicant Registration</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        width: 80%;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"] {
+        width: calc(100% - 12px);
+        padding: 6px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #printOutput {
+        margin-top: 20px;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      table th,
+      table td {
+        padding: 12px;
+        border: 1px solid #ccc;
+        text-align: left;
+      }
+
+      table th {
+        background-color: #007bff;
+        color: #fff;
+      }
+
+      table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      table tbody tr:hover {
+        background-color: #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Applicant Registration</h1>
+      <form id="applicantForm">
+        <label for="cnic">CNIC</label>
+        <input type="text" id="cnic" name="cnic" required /><br />
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" required /><br />
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" required /><br />
+        <button type="button" onclick="saveData()">Save</button>
+        <button type="button" onclick="printData()">Print Data</button>
+      </form>
+      <div id="printOutput"></div>
+    </div>
+
+    <script>
+      let applicants = [];
+
+      function saveData() {
+        let cnic = document.getElementById("cnic").value;
+        let firstName = document.getElementById("firstName").value;
+        let lastName = document.getElementById("lastName").value;
+
+        let applicant = {
+          cnic: cnic,
+          firstName: firstName,
+          lastName: lastName,
+        };
+
+        applicants.push(applicant);
+
+        document.getElementById("cnic").value = "";
+        document.getElementById("firstName").value = "";
+        document.getElementById("lastName").value = "";
+      }
+
+      function printData() {
+        applicants.sort((a, b) => a.lastName.localeCompare(b.lastName));
+
+        let output =
+          "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Printed Applicant Data</title><link rel='stylesheet' href='styles.css'></head><body><div class='container'><h2>Applicant Data</h2>";
+        output +=
+          "<table><thead><tr><th>CNIC</th><th>Name</th></tr></thead><tbody>";
+        for (let i = 0; i < applicants.length; i++) {
+          output +=
+            "<tr><td>" +
+            applicants[i].cnic +
+            "</td><td>" +
+            applicants[i].firstName +
+            " " +
+            applicants[i].lastName +
+            "</td></tr>";
+        }
+        output += "</tbody></table></div></body></html>";
+
+        const blob = new Blob([output], { type: "text/html" });
+
+        const url = URL.createObjectURL(blob);
+
+        window.open(url, "_blank");
+      }
+    </script>
+  </body>
+</html>

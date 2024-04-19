@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q3</title>
+    <style>
+      .cards {
+        width: 100px;
+        height: 140px;
+        border: 1px solid #ccc;
+        position: absolute;
+        border-radius: 8px;
+        background-size: cover;
+      }
+
+      @keyframes slideIn20 {
+        from {
+          transform: translate(0, 0);
+        }
+        to {
+          transform: translate(20px, 20px);
+        }
+      }
+      @keyframes slideIn40 {
+        from {
+          transform: translate(0, 0);
+        }
+        to {
+          transform: translate(40px, 40px);
+        }
+      }
+      @keyframes slideIn60 {
+        from {
+          transform: translate(0, 0);
+        }
+        to {
+          transform: translate(60px, 60px);
+        }
+      }
+      @keyframes slideIn80 {
+        from {
+          transform: translate(0, 0);
+        }
+        to {
+          transform: translate(80px, 80px);
+        }
+      }
+
+      .card1 {
+        background-image: url("./images/10.svg");
+      }
+      .card2 {
+        background-image: url("./images/k.svg");
+        animation: slideIn20 0.5s ease forwards;
+      }
+      .card3 {
+        background-image: url("./images/A.svg");
+        animation: slideIn40 0.5s ease forwards;
+      }
+      .card4 {
+        background-image: url("./images/J.svg");
+        animation: slideIn60 0.5s ease forwards;
+      }
+      .card5 {
+        background-image: url("./images/Q.svg");
+        animation: slideIn80 0.5s ease forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cards card1"></div>
+    <div class="cards card2"></div>
+    <div class="cards card3"></div>
+    <div class="cards card4"></div>
+    <div class="cards card5"></div>
+  </body>
+</html>
